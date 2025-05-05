@@ -11,7 +11,9 @@ SRC_DIR = src
 OBJS_DIR = objs
 
 
-SRC =  	
+SRC =  	main.c \
+		parsing/parse.c \
+		init/init.c \
 		
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
