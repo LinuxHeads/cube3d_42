@@ -12,8 +12,15 @@ OBJS_DIR = objs
 
 
 SRC =  	main.c \
+		exit_handler.c \
 		parsing/parse.c \
+		parsing/parse_utils.c \
+		parsing/parse_colors.c \
+		parsing/parse_texture.c \
+		parsing/parse_content.c \
 		init/init.c \
+		init/init_mlx.c \
+
 		
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
@@ -24,7 +31,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS) $(MLX42_FLAGS)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) bonus
 
 # Rule to create .o files while preserving the subdirectory structure
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJS_DIR)
