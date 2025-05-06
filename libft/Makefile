@@ -39,6 +39,8 @@ CFILES = ft_isdigit.c \
 		ft_strncpy.c \
 		ft_strcmp.c \
 		ft_atod.c \
+		ft_free_split.c \
+		ft_isnumber.c \
 		../get_next_line/get_next_line.c \
 
 BONUS = ft_lstadd_back_bonus.c \
