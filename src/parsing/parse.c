@@ -6,36 +6,44 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/06 06:52:36 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/08 21:41:30 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void    read_and_store_line(t_game *game)
+void read_and_store_line(t_game *game)
 {
     char    *line;
     int     i;
+    int     type;
 
     i = 0;
     while (1)
     {
         line = get_next_line(game->fd);
         if (!line)
-            break ;
-        if (line[0] == '\n')
+            break;
+        
+        // Skip empty lines
+        if (line[0] == '\n' || line[0] == '\0')
         {
             free(line);
-            continue ;
+            continue;
         }
-        if (line_type(line) == 1)
+        
+        type = line_type(line);
+        if (type == 1)
             parse_texture(game, line, i);
-        else if (line_type(line) == 2)
+        else if (type == 2)
             parse_color(game, line);
-        else if (line_type(line) == 3)
+        else if (type == 3)
             parse_map_line(game, line);
-        else
-            ft_exit_handler(game, (char *[]){"Error\nInvalid line format on line ", ft_itoa(i), " .\n", NULL}, 1, line);
+        else {
+            char *ln = ft_itoa(i + 1);
+            ft_exit_handler(game, (char *[]){"Error\nInvalid line format on line ", ln, " .\n", NULL}, 1, ln);
+        }
+        
         free(line);
         i++;
     }
@@ -45,34 +53,49 @@ void fill_map(t_game *game)
 {
     size_t j;
 
+    if (game->map.height == 0) 
+    {
+        ft_exit_handler(game, (char *[]){"Error\nNo map data found.\n", NULL}, 1, NULL);
+    }
     game->map.content = malloc(sizeof(char *) * (game->map.height + 1));
     if (!game->map.content)
     {
-        char *ln =  ft_itoa(__LINE__);
+        char *ln = ft_itoa(__LINE__);
         ft_exit_handler(game, (char *[]){"Error\nFailed to allocate memory for map content.\non line: ", ln, " file: ", __FILE__ , ".\n", NULL}, 1, ln);
     }
     game->map.content[game->map.height] = NULL;
     t_list *temp = game->map.buffer;
     j = 0;
-    while (temp)
+    size_t max_width = 0;
+    t_list *width_check = game->map.buffer;
+    while (width_check)
     {
-        game->map.content[j] = ft_strdup(temp->content);
+        size_t line_len = ft_strlen(width_check->content);
+        if (line_len > max_width)
+            max_width = line_len;
+        width_check = width_check->next;
+    }
+    game->map.width = max_width;
+    while (temp && j < game->map.height)
+    {
+        size_t line_len = ft_strlen(temp->content);
+        game->map.content[j] = malloc(game->map.width + 1);
         if (!game->map.content[j])
         {
-            char *ln =  ft_itoa(__LINE__);
-            ft_exit_handler(game, (char *[]){"Error\nFailed to allocate memory for map content.\non line: ", ln, " file: ", __FILE__ , ".\n", NULL}, 1, ln);
+            char *ln = ft_itoa(__LINE__);
+            ft_exit_handler(game, (char *[]){"Error\nFailed to allocate memory for map line.\non line: ", ln, " file: ", __FILE__ , ".\n", NULL}, 1, ln);
+        }
+        ft_strlcpy(game->map.content[j], temp->content, line_len + 1);
+        if (line_len < game->map.width)
+        {
+            ft_memset(game->map.content[j] + line_len, ' ', game->map.width - line_len);
+            game->map.content[j][game->map.width] = '\0';
         }
         temp = temp->next;
         j++;
     }
+    
     ft_lstclear(&game->map.buffer, free);
-    game->map.width = ft_strlen(game->map.content[0]);
-    while (j < game->map.height)
-    {
-        if (ft_strlen(game->map.content[j]) != game->map.width)
-            ft_exit_handler(game, (char *[]){"Error\nMap lines are not of equal length.\n", NULL}, 1, NULL);
-        j++;
-    }
     close(game->fd);
     game->fd = -1;
     game->map.buffer = NULL;
