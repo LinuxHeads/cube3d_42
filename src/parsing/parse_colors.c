@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/08 21:40:05 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/13 05:41:47 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,70 +23,37 @@ bool is_rgb(char *rgb)
     return (true);
 }
 
-t_rgb parse_rgb(t_game *game, char *colors, char** text)
+int parse_rgb(char **text, t_rgb *rgb)
 {
-    t_rgb   rgb;
-    char    **split;
-    int     count;
-    char *trimmed_colors;
-    int i;
-    int value;
-    
-    count = 0;
-    rgb.r = 0;
-    rgb.g = 0;
-    rgb.b = 0;
-    trimmed_colors = ft_strtrim(colors, " \n\r\t");
-    if (!trimmed_colors) 
-    {
-        ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: Memory allocation failed.", NULL}, 1, NULL);
-    }
-    split = ft_split(trimmed_colors, ',');
-    free(trimmed_colors);
-    if (!split)
-    {
-        ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: Failed to parse RGB values.", NULL}, 1, NULL);
-    }
-    while (split[count])
-        count++;
-    if (count != 3)
-    {
-        ft_free_split(split);
-        ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: RGB must have exactly 3 values.", NULL}, 1, NULL);
-    }
+    int     i;
+    char    *cmp;
+    int     value;
+
     i = 0;
-    while( i < 3)
+    while (i < 3)
     {
-        char *trimmed_component = ft_strtrim(split[i], " \n\r\t");
-        if (!trimmed_component)
+        cmp = ft_strtrim(text[i], " \tFC\n");
+        if (!cmp)
+            return (1);
+        if (is_rgb(cmp))
         {
-            ft_free_split(split);
-            ft_free_split(text);
-            ft_exit_handler(game, (char *[]){"Error: Memory allocation failed.", NULL}, 1, NULL);
+            value = ft_atoi(cmp);
+            if (i == 0)
+                rgb->r = value;
+            if (i == 1)
+                rgb->g = value;
+            if (i == 2)
+                rgb->b = value;
         }
-        if (!is_rgb(trimmed_component))
+        else
         {
-            free(trimmed_component);
-            ft_free_split(split);
-            ft_free_split(text);
-            ft_exit_handler(game, (char *[]){"Error: Invalid RGB value.", NULL}, 1, NULL);
+            free(cmp);
+            return (1);
         }
-        free(trimmed_component);
-        value = ft_atoi(split[i]);
-        if (i == 0) 
-            rgb.r = value;
-        else if (i == 1) 
-            rgb.g = value;
-        else 
-            rgb.b = value;
+        free(cmp);
         i++;
     }
-
-    ft_free_split(split);
-    return (rgb);
+    return (0);
 }
 
 void parse_color(t_game *game, char *line)
@@ -94,21 +61,31 @@ void parse_color(t_game *game, char *line)
     char    **text;
     t_rgb   rgb;
 
-    text = ft_split(line, ' ');
+    rgb.r = 0;
+    rgb.g = 0;
+    rgb.b = 0;
+    text = ft_split(line, ',');
     if (!text || !text[0] || !text[1])
     {
         char *ln = ft_itoa(__LINE__);
         if (text) ft_free_split(text);
         ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", ln, " file: ", __FILE__ , " .", NULL}, 1, ln);
     }
-    rgb = parse_rgb(game, text[1], text);
-    if (ft_strcmp(text[0], "F") == 0)
+    if (parse_rgb(text, &rgb))
+    {
+        char *ln = ft_itoa(__LINE__);
+        if (text) ft_free_split(text);
+        ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", ln, " file: ", __FILE__ , " .", NULL}, 1, ln);
+    }
+    if (ft_strncmp(text[0], "F", 1) == 0)
+    {
         game->map.floor_color = rgb;
-    else if (ft_strcmp(text[0], "C") == 0)
+        printf("rgb %d %d %d\n", rgb.r, rgb.g, rgb.b);
+    }
+    else if (ft_strncmp(text[0], "C", 1) == 0)
+    {
         game->map.ceiling_color = rgb;
-    else {
-        ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: Invalid color identifier (must be F or C).", NULL}, 1, NULL);
+        printf("rgb %d %d %d\n", rgb.r, rgb.g, rgb.b);
     }
     ft_free_split(text);
 }

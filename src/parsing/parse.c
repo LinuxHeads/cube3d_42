@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/08 21:41:30 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/13 05:58:57 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,36 @@ void read_and_store_line(t_game *game)
         if (!line)
             break;
         
-        // Skip empty lines
         if (line[0] == '\n' || line[0] == '\0')
         {
             free(line);
             continue;
         }
-        
         type = line_type(line);
-        if (type == 1)
-            parse_texture(game, line, i);
-        else if (type == 2)
+        if(type != 7 && occurence_check(game, type) )
+        {
+            return ;
+        }
+        if (type <= 4)
+        {
+            set_occurrence(game, type);   
+            parse_texture(game, line, i, type);
+        }
+        else if (type <= 6)
+        {
+            set_occurrence(game, type);
             parse_color(game, line);
-        else if (type == 3)
+        }
+        else if (type == 7)
+        {
+            set_occurrence(game, type);   
             parse_map_line(game, line);
-        else {
+        }
+        else 
+        {
             char *ln = ft_itoa(i + 1);
             ft_exit_handler(game, (char *[]){"Error\nInvalid line format on line ", ln, " .\n", NULL}, 1, ln);
         }
-        
         free(line);
         i++;
     }
