@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:41:25 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/13 05:42:50 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/20 23:06:14 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 void    set_occurrence(t_game *game, int type)
 {
     game->map.occurence |= 1 << type;
+}
+
+int check_order(t_game *game, int order)
+{
+    if (game->map.occurence == 0)
+        return (0);
+    if (order == 1)
+        return (MASK_TEXTURES & game->map.occurence) == MASK_TEXTURES;
+    if (order == 2)
+        return ( (MASK_TEXTURES | MASK_COLORS) & game->map.occurence)
+        == (MASK_TEXTURES | MASK_COLORS);
+    return (0);
 }
 
 int occurence_check(t_game *game, int type)

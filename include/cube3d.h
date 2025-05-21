@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/13 05:11:04 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/20 22:56:29 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # define W_WIDTH 1280
 # define W_HEIGHT 720
+
+// i use these macro s to check if the order of the lines is correct
+# define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE + 1)) | (1 << (EA + 1)))
+# define MASK_COLORS   ((1 << (FlOOR + 1))    | (1 << (CEILING + 1)))
 
 enum e_texture
 {
@@ -77,6 +81,7 @@ typedef struct s_game
 }	t_game;
 
 void    init(t_game *game, int ac, char **av);
+int     check_order(t_game *game, int order);
 void    setup_input_file(t_game *game, char *file);
 int     line_type(char *line);
 void    parse_map_line(t_game *game, char *line);
@@ -88,4 +93,5 @@ void    ft_exit_handler(t_game *game, char **message, int exit_code, void *ptr);
 void    parse_texture(t_game *game, char *line, int i, int type);
 void    set_occurrence(t_game *game, int type);
 int     occurence_check(t_game *game, int type);
+void    fill_map(t_game *game);
 #endif /* CUBE3D_H */
