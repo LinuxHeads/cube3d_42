@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/13 05:41:47 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:59:33 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,13 @@ void parse_color(t_game *game, char *line)
     text = ft_split(line, ',');
     if (!text || !text[0] || !text[1])
     {
-        char *ln = ft_itoa(__LINE__);
         if (text) ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", ln, " file: ", __FILE__ , " .", NULL}, 1, ln);
+        ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", " file: ", __FILE__ , " .", NULL}, 1, NULL);
     }
     if (parse_rgb(text, &rgb))
     {
-        char *ln = ft_itoa(__LINE__);
         if (text) ft_free_split(text);
-        ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", ln, " file: ", __FILE__ , " .", NULL}, 1, ln);
+        ft_exit_handler(game, (char *[]){"Error: Invalid color format on line: ", " file: ", __FILE__ , " .", NULL}, 1, NULL);
     }
     if (ft_strncmp(text[0], "F", 1) == 0)
     {

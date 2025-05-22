@@ -18,6 +18,8 @@ SRC =  	main.c \
 		parsing/parse_colors.c \
 		parsing/parse_texture.c \
 		parsing/parse_content.c \
+		parsing/check_map.c \
+		parsing/validation_utils.c \
 		init/init.c \
 		init/init_mlx.c \
 

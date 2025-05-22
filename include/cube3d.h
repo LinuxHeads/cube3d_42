@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/20 22:56:29 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:42:52 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_WIDTH 1280
 # define W_HEIGHT 720
 
-// i use these macro s to check if the order of the lines is correct
+// i use these macro s to make sure the order of input is correct
 # define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE + 1)) | (1 << (EA + 1)))
 # define MASK_COLORS   ((1 << (FlOOR + 1))    | (1 << (CEILING + 1)))
 
@@ -67,7 +67,7 @@ typedef struct map_s
 typedef struct s_player
 {
     t_vec	pos;
-    t_vec	dir;
+    char	dir;
 }	t_player;
 
 
@@ -94,4 +94,6 @@ void    parse_texture(t_game *game, char *line, int i, int type);
 void    set_occurrence(t_game *game, int type);
 int     occurence_check(t_game *game, int type);
 void    fill_map(t_game *game);
+int    check_map(t_game *game);
+char    **dup_map(t_game *game);
 #endif /* CUBE3D_H */

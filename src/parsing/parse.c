@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/20 22:57:40 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/22 03:03:59 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,13 @@ void    parse(t_game *game, char *file)
 {
     setup_input_file(game, file);
     parse_map(game);
+    if (game->map.occurence != (MASK_TEXTURES | MASK_COLORS | (1 << 7)))
+    {
+        ft_exit_handler(game, (char *[]){"Error\nInvalid map format", NULL} , 1,NULL);
+    }
+    if (check_map(game))
+    {
+        printf("Error\nInvalid map format\n");
+        // ft_exit_handler(game, (char *[]){"Error\nInvalid map format", NULL} , 1,NULL);
+    }
 }
