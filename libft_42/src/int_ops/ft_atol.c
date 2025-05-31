@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdsalah <abdsalah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:30:43 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/01/05 21:46:53 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:03:37 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long	ft_atol(const char *str)
 {
-	int		i;
+	size_t	i;
 	long	sign;
 	long	number;
 
@@ -23,7 +23,7 @@ long	ft_atol(const char *str)
 	number = 0;
 	if (str[0] == '\0')
 		return (0);
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -31,7 +31,7 @@ long	ft_atol(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(str[i]))
 	{
 		number = number * 10 + (str[i] - '0');
 		i++;

@@ -6,12 +6,11 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 05:16:17 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/03/31 19:40:20 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:59:18 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <ctype.h>
 
 double ft_atod(const char *s)
 {
@@ -22,11 +21,8 @@ double ft_atod(const char *s)
 
     if (!s || *s == '\0')
         return 0.0;
-
-    while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' ||
-           s[i] == '\v' || s[i] == '\f' || s[i] == '\r')
+    while (ft_isspace(s[i]))
         i++;
-
     if (s[i] == '-')
     {
         sign = -1;
@@ -34,23 +30,20 @@ double ft_atod(const char *s)
     }
     else if (s[i] == '+')
         i++;
-
-    while (s[i] >= '0' && s[i] <= '9')
+    while (ft_isdigit(s[i]))
     {
         result = result * 10.0 + (s[i] - '0');
         i++;
     }
-
     if (s[i] == '.')
     {
         i++;
-        while (s[i] >= '0' && s[i] <= '9')
+        while (ft_isdigit(s[i]))
         {
             factor /= 10.0;
             result += (s[i] - '0') * factor;
             i++;
         }
     }
-
     return sign * result;
 }

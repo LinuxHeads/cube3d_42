@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 02:32:24 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/06 02:32:29 by abdsalah         ###   ########.fr       */
+/*   Created: 2025/05/06 05:38:35 by abdsalah          #+#    #+#             */
+/*   Updated: 2025/05/06 17:49:35 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_split(char **split)
+int	ft_isnumber(char *str)
 {
     int	i;
 
     i = 0;
-    if (!split)
-        return ;
-    while (split[i])
+    if (str[i] == '-' || str[i] == '+')
+        i++;
+    while (str[i])
     {
-        free(split[i]);
+        if (!ft_isdigit(str[i]))
+            return (0);
         i++;
     }
-    free(split);
+    return (1);
 }
