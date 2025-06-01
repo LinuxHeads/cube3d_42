@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:50:13 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/08 21:40:33 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:29:04 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void    print_error_message(char **message)
 }
 void ft_exit_handler(t_game *game, char *message[], int exit_code, void *ptr)
 {
-    if (game && game->mlx)
-        free_mlx(game);
+    // if (game && game->mlx)
+    //     free_mlx(game);
     if (game)
         free_map(game);
     if (ptr)
