@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/22 03:07:27 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:59:18 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int check_content(t_game *game)
                 game->player.pos.x = j;
                 game->player.pos.y = i;
                 game->player.dir = game->map.content[i][j];
-                game->map.content[i][j] = '1';
+                game->map.content[i][j] = '0';
             }
             else
                 return (1);
@@ -52,7 +52,7 @@ static int check_content(t_game *game)
     return (0);
 }
 
-static int  flood_fill(char **map, int row, int col, t_game *game)
+__attribute__((unused)) int  flood_fill(char **map, int row, int col, t_game *game)
 {
     size_t  max_cols;
 
@@ -80,8 +80,9 @@ int     check_walls(t_game *game)
     map_copy = dup_map(game);
     if (!map_copy)
         return (1);
-    ret = flood_fill(map_copy, game->player.pos.x, game->player.pos.y, game);
-    printf("Flood fill result: %d\n", ret);
+    // ret = flood_fill(map_copy, game->player.pos.x, game->player.pos.y, game);
+    // printf("Flood fill result: %d\n", ret);
+    ret = 0;
     ft_free_split(map_copy);
     return (ret);
 }
