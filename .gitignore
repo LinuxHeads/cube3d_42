@@ -3,3 +3,4 @@ cube3d
 libft.a
 objs
 *.cub
+*.json
