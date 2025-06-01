@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -Iinclude
 NAME = cube3d
 
-LIBFT_DIR = libft
+LIBFT_DIR = libft_42
 LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -22,6 +22,9 @@ SRC =  	main.c \
 		parsing/validation_utils.c \
 		init/init.c \
 		init/init_mlx.c \
+		game/raycasting.c \
+		game/start_game.c \
+		colors/color_utils.c \
 
 		
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
