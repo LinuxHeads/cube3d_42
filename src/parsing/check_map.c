@@ -54,13 +54,12 @@ static int check_content(t_game *game)
 
 __attribute__((unused)) int  flood_fill(char **map, int row, int col, t_game *game)
 {
-    size_t  max_cols;
+    
 
-    if (row < 0 || col < 0 || row >= (int)game->map.height)
+    if ((row < 0 || col < 0) || ((row >= (int)game->map.height || col >= (int)game->map.width) && ( map[col][row] == '0')) )
+    {
         return (1);
-    max_cols = ft_strlen(map[row]);
-    if (col >= (int)max_cols)
-        return (1);
+    }
     if (map[row][col] == '1' || map[row][col] == 'F')
         return (0);
     map[row][col] = 'F';
@@ -80,8 +79,8 @@ int     check_walls(t_game *game)
     map_copy = dup_map(game);
     if (!map_copy)
         return (1);
-    // ret = flood_fill(map_copy, game->player.pos.x, game->player.pos.y, game);
-    // printf("Flood fill result: %d\n", ret);
+    ret = flood_fill(map_copy, game->player.pos.y, game->player.pos.x, game);
+    printf("Flood fill result: %d\n", ret);
     ret = 0;
     ft_free_split(map_copy);
     return (ret);
