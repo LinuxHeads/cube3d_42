@@ -6,12 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:43:16 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/20 15:09:58 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/06 01:16:12 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
+// I used AI here
 void fill_map(t_game *game)
 {
     size_t j;
