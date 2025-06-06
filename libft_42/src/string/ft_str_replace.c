@@ -61,7 +61,7 @@ static void	replace_occurrences(char *result, const char *str, const char *old,
 }
 
 // this function replaces all occurrences of a substring in a string with
-// it was made by the magnificent ahramada 
+// it was made by the magnificent ahramada
 char	*ft_str_replace(const char *str, const char *old, const char *new)
 {
 	char	*result;

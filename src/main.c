@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:59:21 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 05:11:17 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/06 05:17:55 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	print_game(t_game *game)
 	while (++i < 4)
 	{
 		if (game->map.texture[i])
-			printf("Texture %d: %s\n", i, game->map.texture[i]);
+			printf("Texture %ld: %s\n", i, game->map.texture[i]);
 		else
-			printf("Texture %d: NULL\n", i);
+			printf("Texture %ld: NULL\n", i);
 	}
 }
 
