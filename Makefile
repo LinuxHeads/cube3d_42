@@ -22,7 +22,7 @@ SRC =  	main.c \
 		parsing/validation_utils.c \
 		init/init.c \
 		init/init_mlx.c \
-		game/raycasting.c \
+		game/setup_ray.c \
 		game/start_game.c \
 		colors/color_utils.c \
 

@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <math.h>
 # include "../libft_42/include/libft.h"
-# include <MLX42.h>
+# include <MLX42/MLX42.h>
 
 # define TILE_SIZE 1.0 // size of each tile in the map, used for scaling the map
 # define W_WIDTH 1280 // window width
@@ -71,10 +71,25 @@ typedef struct map_s
 typedef struct s_player
 {
     t_vec	pos;
+    t_vec	player_dir;
+    t_vec	camera_plane;
     char	dir;
     double	angle;
 }	t_player;
 
+
+typedef struct s_ray
+{
+	t_vec dir;           // Ray direction
+	t_vec pos;
+	t_vec delta;         // Delta distances
+	t_vec side_dist;     // Side distances
+	t_vec map;           // Map cell we're in
+	t_vec step;          // Step in x/y (+1 or -1)
+	double perp_dist;    // Distance to wall
+	int hit;             // Wall hit flag
+	int side;           // 0 = x side, 1 = y side
+}	t_ray;
 
 typedef struct s_game
 {
