@@ -24,6 +24,5 @@ void init_mlx(t_game *game)
         mlx_close_window(game->mlx);
         ft_exit_handler(game, (char *[]){"Error\nFailed to create image.\n", NULL}, 1, NULL);
     }
-    mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
 

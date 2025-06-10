@@ -86,105 +86,105 @@ void	trace_ray(t_ray *ray, t_map *map)
  *
  *
  * */
-/* int choose_wall_color(t_ray ray) */
-/* { */
-/*     if (ray.side == 0) // X-side (vertical walls) */
-/*     { */
-/*         if (ray.dir.x > 0) */
-/*             return get_rgba(255, 0, 0, 255);    // East wall - Red */
-/*         else */
-/*             return get_rgba(0, 255, 0, 255);    // West wall - Green */
-/*     } */
-/*     else // Y-side (horizontal walls) */
-/*     { */
-/*         if (ray.dir.y > 0) */
-/*             return get_rgba(0, 0, 255, 255);    // South wall - Blue */
-/*         else */
-/*             return get_rgba(255, 255, 0, 255);  // North wall - Yellow */
-/*     } */
-/* } */
+int choose_wall_color(t_ray ray)
+{
+    if (ray.side == 0) // X-side (vertical walls)
+    {
+        if (ray.dir.x > 0)
+            return get_rgba(255, 0, 0, 255);    // East wall - Red
+        else
+            return get_rgba(0, 255, 0, 255);    // West wall - Green
+    }
+    else // Y-side (horizontal walls)
+    {
+        if (ray.dir.y > 0)
+            return get_rgba(0, 0, 255, 255);    // South wall - Blue
+        else
+            return get_rgba(255, 255, 0, 255);  // North wall - Yellow
+    }
+}
 
-/* // Function to draw a vertical line using MLX42 */
-/* void draw_vertical_line(t_game *game, int col, int draw_start, int draw_end, int color) */
-/* { */
-/*     int y; */
+// Function to draw a vertical line using MLX42
+void draw_vertical_line(t_game *game, int col, int draw_start, int draw_end, int color)
+{
+    int y;
     
-/*     // Draw ceiling */
-/*     for (y = 0; y < draw_start; y++) */
-/*     { */
-/*         if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT) */
-/*             mlx_put_pixel(game->img, col, y, get_rgba(game->map.ceiling_color.r, */ 
-/*                          game->map.ceiling_color.g, game->map.ceiling_color.b, 255)); */
-/*     } */
+    // Draw ceiling
+    for (y = 0; y < draw_start; y++)
+    {
+        if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT)
+            mlx_put_pixel(game->img, col, y, get_rgba(game->map.ceiling_color.r, 
+                         game->map.ceiling_color.g, game->map.ceiling_color.b, 255));
+    }
     
-/*     // Draw wall */
-/*     for (y = draw_start; y <= draw_end; y++) */
-/*     { */
-/*         if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT) */
-/*             mlx_put_pixel(game->img, col, y, color); */
-/*     } */
+    // Draw wall
+    for (y = draw_start; y <= draw_end; y++)
+    {
+        if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT)
+            mlx_put_pixel(game->img, col, y, color);
+    }
     
-/*     // Draw floor */
-/*     for (y = draw_end + 1; y < W_HEIGHT; y++) */
-/*     { */
-/*         if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT) */
-/*             mlx_put_pixel(game->img, col, y, get_rgba(game->map.floor_color.r, */ 
-/*                          game->map.floor_color.g, game->map.floor_color.b, 255)); */
-/*     } */
-/* } */
+    // Draw floor
+    for (y = draw_end + 1; y < W_HEIGHT; y++)
+    {
+        if (col >= 0 && col < W_WIDTH && y >= 0 && y < W_HEIGHT)
+            mlx_put_pixel(game->img, col, y, get_rgba(game->map.floor_color.r, 
+                         game->map.floor_color.g, game->map.floor_color.b, 255));
+    }
+}
 
-/* // CORRECTED draw_column function */
-/* void draw_column(int col, t_ray ray, t_game *game) */
-/* { */
-/*     double line_height; */
-/*     int draw_start; */
-/*     int draw_end; */
+// CORRECTED draw_column function
+void draw_column(int col, t_ray ray, t_game *game)
+{
+    double line_height;
+    int draw_start;
+    int draw_end;
 
-/*     // Calculate perpendicular distance to fix fish-eye effect */
-/*     if (ray.side == 0) // X-side hit */
-/*         ray.perp_dist = (ray.map.x - game->player.pos.x + (1 - ray.step.x) / 2) / ray.dir.x; */
-/*     else // Y-side hit */
-/*         ray.perp_dist = (ray.map.y - game->player.pos.y + (1 - ray.step.y) / 2) / ray.dir.y; */
+    // Calculate perpendicular distance to fix fish-eye effect
+    if (ray.side == 0) // X-side hit
+        ray.perp_dist = (ray.map.x - game->player.pos.x + (1 - ray.step.x) / 2) / ray.dir.x;
+    else // Y-side hit
+        ray.perp_dist = (ray.map.y - game->player.pos.y + (1 - ray.step.y) / 2) / ray.dir.y;
 
-/*     // Calculate line height */
-/*     line_height = (double)W_HEIGHT / ray.perp_dist; */
+    // Calculate line height
+    line_height = (double)W_HEIGHT / ray.perp_dist;
     
-/*     // Calculate draw start and end points */
-/*     draw_start = (int)(-line_height / 2 + W_HEIGHT / 2); */
-/*     if (draw_start < 0) */
-/*         draw_start = 0; */
+    // Calculate draw start and end points
+    draw_start = (int)(-line_height / 2 + W_HEIGHT / 2);
+    if (draw_start < 0)
+        draw_start = 0;
     
-/*     draw_end = (int)(line_height / 2 + W_HEIGHT / 2); */
-/*     if (draw_end >= W_HEIGHT) */
-/*         draw_end = W_HEIGHT - 1; */
+    draw_end = (int)(line_height / 2 + W_HEIGHT / 2);
+    if (draw_end >= W_HEIGHT)
+        draw_end = W_HEIGHT - 1;
 
-/*     draw_vertical_line(game, col, draw_start, draw_end, choose_wall_color(ray)); */
-/* } */
+    draw_vertical_line(game, col, draw_start, draw_end, choose_wall_color(ray));
+}
 
-/* // CORRECTED render_frame function for MLX42 */
-/* void render_frame(void *param) */
-/* { */
-/*     t_game *game = (t_game *)param; */
-/*     int col; */
-/*     t_ray ray; */
+// CORRECTED render_frame function for MLX42
+void render_frame(void *param)
+{
+    t_game *game = (t_game *)param;
+    int col;
+    t_ray ray;
     
-/*     // Debug: Print player position once every 60 frames (roughly 1 second) */
-/*     static int frame_count = 0; */
-/*     if (frame_count % 60 == 0) */
-/*     { */
-/*         printf("Player pos: (%.2f, %.2f), dir: (%.2f, %.2f)\n", */ 
-/*                game->player.pos.x, game->player.pos.y, */
-/*                game->player.player_dir.x, game->player.player_dir.y); */
-/*     } */
-/*     frame_count++; */
+    // Debug: Print player position once every 60 frames (roughly 1 second)
+    static int frame_count = 0;
+    if (frame_count % 60 == 0)
+    {
+        printf("Player pos: (%.2f, %.2f), dir: (%.2f, %.2f)\n", 
+               game->player.pos.x, game->player.pos.y,
+               game->player.player_dir.x, game->player.player_dir.y);
+    }
+    frame_count++;
     
-/*     col = 0; */
-/*     while (col < W_WIDTH) */
-/*     { */
-/*         ray = init_ray(game->player, col);  // Setup the ray */
-/*         trace_ray(&ray, &game->map);        // Perform DDA to find wall hit */
-/*         draw_column(col, ray, game);        // Draw vertical slice */
-/*         col++; */
-/*     } */
-/* } */
+    col = 0;
+    while (col < W_WIDTH)
+    {
+        ray = init_ray(game->player, col);  // Setup the ray
+        trace_ray(&ray, &game->map);        // Perform DDA to find wall hit
+        draw_column(col, ray, game);        // Draw vertical slice
+        col++;
+    }
+}
 

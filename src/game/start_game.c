@@ -28,6 +28,7 @@ void	start_game(t_game *game)
 		game->player.angle = 0;
 	if (game->player.dir == 'W')
 		game->player.angle = M_PI;
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->img);
