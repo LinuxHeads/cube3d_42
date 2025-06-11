@@ -6,7 +6,7 @@ LIBFT_DIR = libft_42
 LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX42_FLAGS = -lmlx42 -lm -lpthread -ldl -lglfw
+MLX42_FLAGS = -L/home/msalim/MLX42/build -lmlx42 -lm -lpthread -ldl -lglfw
 SRC_DIR = src
 OBJS_DIR = objs
 
@@ -24,6 +24,7 @@ SRC =  	main.c \
 		init/init_mlx.c \
 		game/setup_ray.c \
 		game/start_game.c \
+		game/movement.c	\
 		colors/color_utils.c \
 
 		

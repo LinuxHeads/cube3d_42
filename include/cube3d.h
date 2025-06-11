@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/05/31 23:01:28 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:19:46 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <math.h>
 # include "../libft_42/include/libft.h"
-# include <MLX42/MLX42.h>
+#include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 
 # define TILE_SIZE 1.0 // size of each tile in the map, used for scaling the map
 # define W_WIDTH 1280 // window width
@@ -29,6 +29,8 @@
 # define N_RAYS W_WIDTH // number of rays to cast, equal to the window width
 # define FPS 60 // frames per second, used for timing the game loop
 # define STEP 0.01 
+#define MOVE_SPEED 0.05
+#define ROT_SPEED 0.05
 // i use these macro s to make sure the order of input is correct
 # define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE + 1)) | (1 << (EA + 1)))
 # define MASK_COLORS   ((1 << (FlOOR + 1))    | (1 << (CEILING + 1)))
@@ -273,5 +275,6 @@ void    start_game(t_game *game);
  * @return An integer representing the color in RGBA format.
  */
 int     get_rgba(int r, int g, int b, int a);
+void handle_keypress(mlx_key_data_t keydata, void *param);
 
 #endif /* CUBE3D_H */
