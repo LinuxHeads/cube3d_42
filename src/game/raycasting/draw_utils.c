@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:15:16 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:09:39 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:53:14 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	get_draw_end(double line_height, int height)
 {
-	int	draw_end;
+	long	draw_end;
 
 	draw_end = line_height / 2 + height / 2;
 	if (draw_end >= height)
 		draw_end = height - 1;
-	return (draw_end);
+	return ((int)draw_end);
 }
 
 int	get_draw_start(double line_height, int height)
