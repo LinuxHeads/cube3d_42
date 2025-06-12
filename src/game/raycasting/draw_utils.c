@@ -6,27 +6,27 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 09:15:16 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 09:36:36 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:09:39 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	get_draw_end(double line_height)
+int	get_draw_end(double line_height, int height)
 {
 	int	draw_end;
 
-	draw_end = line_height / 2 + W_HEIGHT / 2;
-	if (draw_end >= W_HEIGHT)
-		draw_end = W_HEIGHT - 1;
+	draw_end = line_height / 2 + height / 2;
+	if (draw_end >= height)
+		draw_end = height - 1;
 	return (draw_end);
 }
 
-int	get_draw_start(double line_height)
+int	get_draw_start(double line_height, int height)
 {
 	int	draw_start;
 
-	draw_start = -line_height / 2 + W_HEIGHT / 2;
+	draw_start = -line_height / 2 + height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
 	return (draw_start);

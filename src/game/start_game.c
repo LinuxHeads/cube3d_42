@@ -6,11 +6,25 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 09:47:56 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:45:46 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	resizer( int32_t width, int32_t height, void *param)
+{
+	t_game *game;
+	
+	game = (t_game *)param;
+	game->height = height;
+	game->width = width;
+	mlx_delete_image(game->mlx, game->img);
+	// null check it
+	game->img = mlx_new_image(game->mlx, width, height);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	render_frame(param);
+}
 
 int	load_textures(t_game *game)
 {
@@ -77,6 +91,7 @@ void	start_game(t_game *game)
 		game->player.camera_plane.x = 0;
 		game->player.camera_plane.y = -0.66;
 	}
+	mlx_resize_hook(game->mlx, &resizer, (void *)game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_key_hook(game->mlx, &handle_keypress, game);

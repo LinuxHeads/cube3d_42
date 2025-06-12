@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:23:59 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 09:37:08 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:13:20 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	render_frame(void *param)
 	}
 	frame_count++;
 	col = 0;
-	while (col < W_WIDTH)
+	while (col < game->width)
 	{
-		ray = init_ray(game->player, col); // Setup the ray
+		ray = init_ray(game->player, col, game->width); // Setup the ray
 		trace_ray(&ray, &game->map);       // Perform DDA to find wall hit
 		draw_column(col, ray, game);       // Draw vertical slice
 		col++;

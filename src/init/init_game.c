@@ -16,6 +16,8 @@ static void	init_map(t_game *game)
 {
 	ft_bzero(&game->map, sizeof(t_map));
 	ft_bzero(&game->player, sizeof(t_player));
+	game->width = 1280; // Default width
+	game->height = 720; // Default height
 }
 
 static void	check_args(int ac, char **av)

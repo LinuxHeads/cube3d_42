@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 09:42:40 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 23:17:16 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
 // #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 # include <MLX42/MLX42.h>
-# define W_WIDTH 1280   // window width
-# define W_HEIGHT 720   // window height
 # define FOV (M_PI / 3) // field of view in radians
-# define N_RAYS W_WIDTH // number of rays to cast, equal to the window width
 # define FPS 60         // frames per second, used for timing the game loop
 # define STEP 0.01
 # define MOVE_SPEED 0.05
@@ -115,6 +113,8 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	int				fd;
+	int				width;
+	int				height;
 }					t_game;
 
 /**
@@ -325,10 +325,10 @@ int					get_rgba(int r, int g, int b, int a);
  */
 void				handle_keypress(mlx_key_data_t keydata, void *param);
 
-t_ray				init_ray(t_player player, int col);
+t_ray				init_ray(t_player player, int col, int width);
 void				draw_column(int col, t_ray ray, t_game *game);
-int					get_draw_end(double line_height);
-int					get_draw_start(double line_height);
+int					get_draw_end(double line_height, int height);
+int					get_draw_start(double line_height, int height);
 int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
 void				rotate_right(t_game *game);
