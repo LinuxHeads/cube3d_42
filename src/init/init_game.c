@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 23:55:29 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 01:14:58 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 06:24:37 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ static void	check_args(int ac, char **av)
 	}
 }
 
-void	init(t_game *game, int ac, char **av)
+void	init_game(t_game *game, int ac, char **av)
 {
 	check_args(ac, av);
-	init_mlx(game);
 	init_map(game);
 	game->fd = -1;
 }

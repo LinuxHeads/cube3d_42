@@ -20,7 +20,7 @@ SRC =  	main.c \
 		parsing/parse_content.c \
 		parsing/check_map.c \
 		parsing/validation_utils.c \
-		init/init.c \
+		init/init_game.c \
 		init/init_mlx.c \
 		game/setup_ray.c \
 		game/start_game.c \
