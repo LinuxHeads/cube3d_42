@@ -6,11 +6,30 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/11 15:21:26 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/12 09:47:56 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+int	load_textures(t_game *game)
+{
+	if (!game || !game->mlx)
+		return (0);
+	game->map.north_texture = mlx_load_png(game->map.texture[NO]);
+	if (!game->map.north_texture)
+		return (0);
+	game->map.south_texture = mlx_load_png(game->map.texture[SO]);
+	if (!game->map.south_texture)
+		return (0);
+	game->map.west_texture = mlx_load_png(game->map.texture[WE]);
+	if (!game->map.west_texture)
+		return (0);
+	game->map.east_texture = mlx_load_png(game->map.texture[EA]);
+	if (!game->map.east_texture)
+		return (0);
+	return (1);
+}
 
 void	start_game(t_game *game)
 {
@@ -20,41 +39,45 @@ void	start_game(t_game *game)
 			(char *[]){"Error\nGame not initialized properly.\n", NULL}, 1,
 			NULL);
 	}
-
-	  if (game->player.dir == 'N')
-    {
-        game->player.angle = M_PI_2;
-        game->player.player_dir.x = 0;
-        game->player.player_dir.y = -1;
-        game->player.camera_plane.x = 0.66;
-        game->player.camera_plane.y = 0;
-    }
-    else if (game->player.dir == 'S')
-    {
-        game->player.angle = 3 * M_PI_2;
-        game->player.player_dir.x = 0;
-        game->player.player_dir.y = 1;
-        game->player.camera_plane.x = -0.66;
-        game->player.camera_plane.y = 0;
-    }
-    else if (game->player.dir == 'E')
-    {
-        game->player.angle = 0;
-        game->player.player_dir.x = 1;
-        game->player.player_dir.y = 0;
-        game->player.camera_plane.x = 0;
-        game->player.camera_plane.y = 0.66;
-    }
-    else if (game->player.dir == 'W')
-    {
-        game->player.angle = M_PI;
-        game->player.player_dir.x = -1;
-        game->player.player_dir.y = 0;
-        game->player.camera_plane.x = 0;
-        game->player.camera_plane.y = -0.66;
-    }
+	if (!load_textures(game))
+	{
+		// this will probably murder some memory bits
+		ft_exit_handler(game, (char *[]){"Error\nFailed to load textures.\n",
+			NULL}, 1, NULL);
+	}
+	if (game->player.dir == 'N')
+	{
+		game->player.angle = M_PI_2;
+		game->player.player_dir.x = 0;
+		game->player.player_dir.y = -1;
+		game->player.camera_plane.x = 0.66;
+		game->player.camera_plane.y = 0;
+	}
+	else if (game->player.dir == 'S')
+	{
+		game->player.angle = 3 * M_PI_2;
+		game->player.player_dir.x = 0;
+		game->player.player_dir.y = 1;
+		game->player.camera_plane.x = -0.66;
+		game->player.camera_plane.y = 0;
+	}
+	else if (game->player.dir == 'E')
+	{
+		game->player.angle = 0;
+		game->player.player_dir.x = 1;
+		game->player.player_dir.y = 0;
+		game->player.camera_plane.x = 0;
+		game->player.camera_plane.y = 0.66;
+	}
+	else if (game->player.dir == 'W')
+	{
+		game->player.angle = M_PI;
+		game->player.player_dir.x = -1;
+		game->player.player_dir.y = 0;
+		game->player.camera_plane.x = 0;
+		game->player.camera_plane.y = -0.66;
+	}
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
-
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_key_hook(game->mlx, &handle_keypress, game);
 	mlx_loop(game->mlx);

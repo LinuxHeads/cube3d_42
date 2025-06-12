@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 06:43:37 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 09:42:40 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "/home/msalim/MLX42/include/MLX42/MLX42.h"
-// # include <MLX42/MLX42.h>
+// #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
+# include <MLX42/MLX42.h>
 # define W_WIDTH 1280   // window width
 # define W_HEIGHT 720   // window height
 # define FOV (M_PI / 3) // field of view in radians
@@ -30,12 +30,12 @@
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
-// i use these macro s to make sure the order of input is correct
+// I use these macros to make sure the order of input is correct
 # define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE \
 			+ 1)) | (1 << (EA + 1)))
 # define MASK_COLORS ((1 << (FlOOR + 1)) | (1 << (CEILING + 1)))
 
-enum			e_texture
+enum				e_texture
 {
 	NO = 0,
 	SO,
@@ -47,37 +47,41 @@ enum			e_texture
 
 typedef struct s_vec
 {
-	double		x;
-	double		y;
-}				t_vec;
+	double			x;
+	double			y;
+}					t_vec;
 
 typedef struct s_rgb
 {
-	int			r;
-	int			g;
-	int			b;
-}				t_rgb;
+	int				r;
+	int				g;
+	int				b;
+}					t_rgb;
 
 typedef struct map_s
 {
-	char		**content;
-	size_t		width;
-	size_t		height;
-	char		*texture[4];
-	t_rgb		floor_color;
-	t_rgb		ceiling_color;
-	t_list		*buffer;
-	int			occurence;
-}				t_map;
+	char			**content;
+	size_t			width;
+	size_t			height;
+	char			*texture[4];
+	t_rgb			floor_color;
+	t_rgb			ceiling_color;
+	t_list			*buffer;
+	int				occurence;
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*west_texture;
+	mlx_texture_t	*east_texture;
+}					t_map;
 
 typedef struct s_player
 {
-	t_vec		pos;
-	t_vec		player_dir;
-	t_vec		camera_plane;
-	char		dir;
-	double		angle;
-}				t_player;
+	t_vec			pos;
+	t_vec			player_dir;
+	t_vec			camera_plane;
+	char			dir;
+	double			angle;
+}					t_player;
 
 // typedef struct s_ray
 // {
@@ -93,25 +97,25 @@ typedef struct s_player
 // }				t_ray;
 typedef struct s_ray
 {
-	t_vec		dir;
-	t_vec		pos;
-	t_vec		delta;
-	t_vec		side_dist;
-	t_vec		map;
-	t_vec		step;
-	double		perp_dist;
-	int			hit;
-	int			side;
-}				t_ray;
+	t_vec			dir;
+	t_vec			pos;
+	t_vec			delta;
+	t_vec			side_dist;
+	t_vec			map;
+	t_vec			step;
+	double			perp_dist;
+	int				hit;
+	int				side;
+}					t_ray;
 
 typedef struct s_game
 {
-	t_map		map;
-	t_player	player;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	int			fd;
-}				t_game;
+	t_map			map;
+	t_player		player;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	int				fd;
+}					t_game;
 
 /**
  * @brief Initializes the game structure and sets up the game environment,
@@ -120,23 +124,23 @@ typedef struct s_game
  * @param ac Number of command line arguments.
  * @param av Array of command line arguments.
  */
-void			init_game(t_game *game, int ac, char **av);
+void				init_game(t_game *game, int ac, char **av);
 
 /**
  * @brief Initializes the mlx library and creates a window for the game.
  * @param game Pointer to the game structure.
  */
-void			init_mlx(t_game *game);
+void				init_mlx(t_game *game);
 
 /**
 
  * @brief checks the order of the input file to ensure that
-    the textures and colors are set in the correct order.
+	the textures and colors are set in the correct order.
  * @param game Pointer to the game structure.
  * @param order The order to check against.
  * @return 1 if the order is correct, 0 otherwise.
  */
-int				check_order(t_game *game, int order);
+int					check_order(t_game *game, int order);
 
 /**
 
@@ -147,7 +151,7 @@ int				check_order(t_game *game, int order);
  * @return void
  * @note This function will exit the program if the file cannot be opened.
  */
-void			setup_input_file(t_game *game, char *file);
+void				setup_input_file(t_game *game, char *file);
 
 /**
  * @brief Determines the type of a line in the input file.
@@ -164,9 +168,10 @@ void			setup_input_file(t_game *game, char *file);
  * @note The function trims the line before checking its type.
  * @note If the line is empty or contains only whitespace, it returns 0.
  */
-int				line_type(char *line);
+int					line_type(char *line);
 
 /**
+
 
  * @brief Parses a line from the input file and updates the game map accordingly.
  * @param game Pointer to the game structure.
@@ -174,39 +179,40 @@ int				line_type(char *line);
  * @return void
  * @note this is used to parse the map lines and add them to the map buffer.
  */
-void			parse_map_line(t_game *game, char *line);
+void				parse_map_line(t_game *game, char *line);
 
 /**
 
- * @brief Combines multiple lines into a single line by 
-    removing newline characters.
+ * @brief Combines multiple lines into a single line by
+	removing newline characters.
  * @param line An array of strings representing the lines to be combined.
  * @return A single string containing all the lines combined,
 	or NULL if an error occurs.
  * @note The function allocates memory for the combined line,
 	which should be freed by the caller.
  */
-char			*combine_line(char **line);
+char				*combine_line(char **line);
 
 /**
  * @brief Parses a line of text to extract RGB color values.
  * @param text A pointer to a string containing the RGB values.
- * @param rgb A pointer to a t_rgb struct where the parsed RGB values are stored.
+* @param rgb A pointer to a t_rgb struct where the parsed RGB values are stored.
  * @return An integer indicating the success of the parsing:
  *     0 - parsing failed,\n
  *     1 - parsing succeeded.
  */
-int				parse_rgb(char **text, t_rgb *rgb);
+int					parse_rgb(char **text, t_rgb *rgb);
 
 /**
+
  * @brief extract rgb color values from a line and store them in the game struct.
-    expected format is "F r,g,b" or "C r,g,b".
+	expected format is "F r,g,b" or "C r,g,b".
  * @param game Pointer to the game structure.
  * @param line The line to be parsed,
 	which should contain the color information.
  * @return void
  */
-void			parse_color(t_game *game, char *line);
+void				parse_color(t_game *game, char *line);
 
 /**
  * @brief the main function that parses the input file and initializes the game.
@@ -214,25 +220,25 @@ void			parse_color(t_game *game, char *line);
  * @param file The name of the input file to be parsed.
  * @return void
  */
-void			parse(t_game *game, char *file);
+void				parse(t_game *game, char *file);
 
 /**
  * @brief exit the program with a message and an exit code,
 	free everything along the way.
  * @param game Pointer to the game structure.
- * @param message An array of strings containing the message 
-    to be displayed before exiting.
+ * @param message An array of strings containing the message
+	to be displayed before exiting.
  * @param exit_code The exit code to be returned to the operating system.
 
  * @param ptr A pointer to any extra data that needs to be freed before exiting.
  * @return void
  */
-void			ft_exit_handler(t_game *game, char **message, int exit_code,
-					void *ptr);
+void				ft_exit_handler(t_game *game, char **message, int exit_code,
+						void *ptr);
 
 /**
- * @brief Parses a texture line and sets the corresponding texture 
-    in the game structure.
+ * @brief Parses a texture line and sets the corresponding texture
+	in the game structure.
  * @param game Pointer to the game structure.
  * @param line The line to be parsed,
 	which should contain the texture information.
@@ -240,7 +246,7 @@ void			ft_exit_handler(t_game *game, char **message, int exit_code,
  * @param type The type of the texture being parsed (e.g., NO, SO, WE, EA).
  * @return void
  */
-void			parse_texture(t_game *game, char *line, int i, int type);
+void				parse_texture(t_game *game, char *line, int i, int type);
 
 /**
  * @brief Sets the occurrence of a specific type in the game structure.
@@ -249,7 +255,7 @@ void			parse_texture(t_game *game, char *line, int i, int type);
 	CEILING, map content).
  * @return void
  */
-void			set_occurrence(t_game *game, int type);
+void				set_occurrence(t_game *game, int type);
 
 /**
  * @brief Checks the occurrence of a specific type in the game structure.
@@ -258,14 +264,14 @@ void			set_occurrence(t_game *game, int type);
 	FlOOR, CEILING, map content).
  * @return An integer indicating the occurrence:
  */
-int				occurence_check(t_game *game, int type);
+int					occurence_check(t_game *game, int type);
 
 /**
  * @brief Initializes the map structure in the game.
  * @param game Pointer to the game structure.
  * @return void
  */
-void			fill_map(t_game *game);
+void				fill_map(t_game *game);
 
 /**
  * @brief checks the map for errors such as invalid characters,
@@ -274,7 +280,7 @@ void			fill_map(t_game *game);
  * @param game Pointer to the game structure.
  * @return An integer indicating the validity of the map.
  */
-int				check_map(t_game *game);
+int					check_map(t_game *game);
 
 /**
  * @brief duplicate the map content into a new array of strings.
@@ -282,7 +288,7 @@ int				check_map(t_game *game);
  * @return A new array of strings containing the duplicated map content,
 	or NULL if an error occurs.
  */
-char			**dup_map(t_game *game);
+char				**dup_map(t_game *game);
 
 /**
  * @brief the main graphcis loop of the game,
@@ -290,7 +296,7 @@ char			**dup_map(t_game *game);
  * @param game Pointer to the game structure.
  * @return void
  */
-void			render_frame(void *game);
+void				render_frame(void *game);
 
 /**
  * @brief Starts the game by initializing the player position and direction,
@@ -298,7 +304,7 @@ void			render_frame(void *game);
  * @param game Pointer to the game structure.
  * @return void
  */
-void			start_game(t_game *game);
+void				start_game(t_game *game);
 
 /**
  * @brief returns the color value in RGBA format.
@@ -308,7 +314,7 @@ void			start_game(t_game *game);
  * @param a The alpha component of the color (0-255).
  * @return An integer representing the color in RGBA format.
  */
-int				get_rgba(int r, int g, int b, int a);
+int					get_rgba(int r, int g, int b, int a);
 
 /**
  * @brief handles the keypress events for the game, such as moving the player,
@@ -317,6 +323,19 @@ int				get_rgba(int r, int g, int b, int a);
  * @param param A pointer to the game structure.
  * @return void
  */
-void			handle_keypress(mlx_key_data_t keydata, void *param);
+void				handle_keypress(mlx_key_data_t keydata, void *param);
+
+t_ray				init_ray(t_player player, int col);
+void				draw_column(int col, t_ray ray, t_game *game);
+int					get_draw_end(double line_height);
+int					get_draw_start(double line_height);
+int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
+mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
+void				rotate_right(t_game *game);
+void				rotate_left(t_game *game);
+void				move_forward(t_game *game);
+void				move_backward(t_game *game);
+void				move_left(t_game *game);
+void				move_right(t_game *game);
 
 #endif /* CUBE3D_H */

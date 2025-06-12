@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:49:10 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 01:33:09 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 07:31:55 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_texture(t_game *game, char *line, int i, int type)
 			(char *[]){"Error\nInvalid texture format on line ", ln, " .\n",
 			NULL}, 1, ln);
 	}
-	path = ft_strtrim(text[1], " \t");
+	path = ft_strtrim(text[1], " \n\t");
 	if (!path)
 	{
 		ft_free_split(text);
