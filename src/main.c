@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:59:21 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 05:17:55 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/12 06:27:00 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	init(&game, argc, argv);
+	init_game(&game, argc, argv);
 	parse(&game, argv[1]);
+	init_mlx(&game);
 	print_game(&game);
 	start_game(&game);
 	ft_exit_handler(&game, (char *[]){"Game exited successfully.\n", NULL}, 0,
