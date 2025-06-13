@@ -45,14 +45,14 @@ void	trace_ray(t_ray *ray, t_map *map)
  * */
 int	choose_wall_color(t_ray ray)
 {
-	if (ray.side == 0) // X-side (vertical walls)
+	if (ray.side == 0)
 	{
 		if (ray.dir.x > 0)
 			return (get_rgba(255, 0, 0, 255)); // East wall - Red
 		else
 			return (get_rgba(0, 255, 0, 255)); // West wall - Green
 	}
-	else // Y-side (horizontal walls)
+	else
 	{
 		if (ray.dir.y > 0)
 			return (get_rgba(0, 0, 255, 255)); // South wall - Blue
@@ -61,23 +61,11 @@ int	choose_wall_color(t_ray ray)
 	}
 }
 
-// CORRECTED render_frame function for MLX42
-void	render_frame(void *param)
+void	render_scene(t_game *game)
 {
-	t_game		*game;
-	int			col;
-	t_ray		ray;
-	static int	frame_count = 0;
+	int		col;
+	t_ray	ray;
 
-	game = (t_game *)param;
-	// Debug: Print player position once every 60 frames (roughly 1 second)
-	if (frame_count % 60 == 0)
-	{
-		printf("Player pos: (%.2f, %.2f), dir: (%.2f, %.2f)\n",
-			game->player.pos.x, game->player.pos.y, game->player.player_dir.x,
-			game->player.player_dir.y);
-	}
-	frame_count++;
 	col = 0;
 	while (col < game->width)
 	{
@@ -86,4 +74,14 @@ void	render_frame(void *param)
 		draw_column(col, ray, game);       // Draw vertical slice
 		col++;
 	}
+}
+
+// Main loop function - combines input and rendering
+void	render_frame(void *param)
+{
+	t_game *game;
+	game = (t_game *)param;
+
+	handle_input(game);
+	render_scene(game);
 }

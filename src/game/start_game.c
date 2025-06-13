@@ -94,7 +94,7 @@ void	start_game(t_game *game)
 	mlx_resize_hook(game->mlx, &resizer, (void *)game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	mlx_loop_hook(game->mlx, &render_frame, game);
-	mlx_key_hook(game->mlx, &handle_keypress, game);
+	/* mlx_key_hook(game->mlx, &handle_keypress, game); */
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->img);
 	mlx_terminate(game->mlx);
