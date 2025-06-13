@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 01:45:12 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:00:02 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	read_and_store_line(t_game *game)
 			continue ;
 		}
 		type = line_type(line);
+		if (type == 0)
+		{
+			ft_exit_handler(game, (char *[]){"Error\ninvalid line format at line", NULL}, 1, line);
+		}
 		if (type != 7 && occurence_check(game, type))
 		{
 			free(line);
