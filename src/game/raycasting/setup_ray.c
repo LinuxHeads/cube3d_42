@@ -70,8 +70,8 @@ void	render_scene(t_game *game)
 	while (col < game->width)
 	{
 		ray = init_ray(game->player, col, game->width); // Setup the ray
-		trace_ray(&ray, &game->map);       // Perform DDA to find wall hit
-		draw_column(col, ray, game);       // Draw vertical slice
+		trace_ray(&ray, &game->map);                   
+		draw_column(col, ray, game);                    // Draw vertical slice
 		col++;
 	}
 }
@@ -79,9 +79,9 @@ void	render_scene(t_game *game)
 // Main loop function - combines input and rendering
 void	render_frame(void *param)
 {
-	t_game *game;
-	game = (t_game *)param;
+	t_game	*game;
 
+	game = (t_game *)param;
 	handle_input(game);
 	render_scene(game);
 }

@@ -12,6 +12,26 @@
 
 #include "cube3d.h"
 
+int	load_textures(t_game *game)
+{
+	if (!game || !game->mlx)
+		return (0);
+	game->map.north_texture = mlx_load_png(game->map.texture[NO]);
+	if (!game->map.north_texture)
+		return (0);
+	game->map.south_texture = mlx_load_png(game->map.texture[SO]);
+	if (!game->map.south_texture)
+		return (0);
+	game->map.west_texture = mlx_load_png(game->map.texture[WE]);
+	if (!game->map.west_texture)
+		return (0);
+	game->map.east_texture = mlx_load_png(game->map.texture[EA]);
+	if (!game->map.east_texture)
+		return (0);
+	return (1);
+}
+
+
 void	parse_texture(t_game *game, char *line, int i, int type)
 {
 	char	**text;
