@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:17:16 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 03:24:53 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ void				ft_exit_handler(t_game *game, char **message, int exit_code,
  * @param type The type of the texture being parsed (e.g., NO, SO, WE, EA).
  * @return void
  */
-void				parse_texture(t_game *game, char *line, int i, int type);
+void				parse_texture(t_game *game, char *line, int type);
 
 /**
  * @brief Sets the occurrence of a specific type in the game structure.
@@ -316,6 +316,11 @@ void				start_game(t_game *game);
  */
 int					get_rgba(int r, int g, int b, int a);
 
+int					get_r(int rgba);
+int					get_g(int rgba);
+int					get_b(int rgba);
+int					get_a(int rgba);
+
 /**
  * @brief handles the keypress events for the game, such as moving the player,
 	rotating the camera, and closing the window.
@@ -327,7 +332,16 @@ void				handle_keypress(mlx_key_data_t keydata, void *param);
 
 t_ray				init_ray(t_player player, int col, int width);
 void				draw_column(int col, t_ray ray, t_game *game);
+
+/**
+ * @brief calculates the expected wall column drawing-end (wall bottom) index.
+ * @param line_height window screen height / distance to the wall
+ * @param height window screen height
+ * @return an integer representing the end index of drawing a wall
+ */
 int					get_draw_end(double line_height, int height);
+
+
 int					get_draw_start(double line_height, int height);
 int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
@@ -337,5 +351,7 @@ void				move_forward(t_game *game);
 void				move_backward(t_game *game);
 void				move_left(t_game *game);
 void				move_right(t_game *game);
-
+void				print_game(t_game *game);
+void				mouse_move(double x, double y, void *param);
+void	free_map(t_game *game);
 #endif /* CUBE3D_H */

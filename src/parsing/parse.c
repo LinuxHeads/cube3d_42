@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/13 18:00:02 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 03:17:41 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	read_and_store_line(t_game *game)
 	char	*line;
 	int		i;
 	int		type;
-
+	int		last_type = -1;
+	
 	i = 0;
 	while (1)
 	{
@@ -26,6 +27,10 @@ void	read_and_store_line(t_game *game)
 			break ;
 		if (line[0] == '\n' || line[0] == '\0')
 		{
+			if (last_type == 7)
+			{
+				ft_exit_handler(game, (char *[]){"Error\nCan't have empty lines between map content\n", NULL}, 1, line);
+			}
 			free(line);
 			continue ;
 		}
@@ -42,7 +47,7 @@ void	read_and_store_line(t_game *game)
 		if (type <= 4)
 		{
 			set_occurrence(game, type);
-			parse_texture(game, line, i, type);
+			parse_texture(game, line, type);
 		}
 		else if (type <= 6)
 		{
@@ -64,6 +69,7 @@ void	read_and_store_line(t_game *game)
 			ft_exit_handler(game, (char *[]){"Error\nInvalid line format",
 				NULL}, 1, NULL);
 		free(line);
+		last_type = type;
 		i++;
 	}
 }
