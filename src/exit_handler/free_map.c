@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 03:24:13 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:24:42 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 03:36:29 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	free_map_content(t_game *game)
 	i = 0;
 	while (i < game->map.height)
 	{
-		printf("i = %ld\n", i);
 		if (game->map.content[i])
 			free(game->map.content[i]);
 		else

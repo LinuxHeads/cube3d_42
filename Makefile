@@ -12,7 +12,8 @@ SRC_DIR = src
 OBJS_DIR = objs
 
 SRC =  	main.c \
-		exit_handler.c \
+		exit_handler/exit_handler.c \
+		exit_handler/free_map.c \
 		parsing/parse.c \
 		parsing/parse_utils.c \
 		parsing/parse_colors.c \

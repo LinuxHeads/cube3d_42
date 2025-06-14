@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:49:10 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:19:59 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 03:57:08 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ void	parse_texture(t_game *game, char *line, int type)
 	if (!path)
 	{
 		ft_free_split(text);
-		ft_exit_handler(game,
-			(char *[]){"Error\nFailed to allocate memory for texture path.\n",
-				NULL}, 1, NULL);
+		ft_exit_handler(game, (char *[]){"Error\nFailed to allocate memory for \
+texture path.\n", NULL}, 1, NULL);
 	}
 	game->map.texture[type - 1] = path;
 	ft_free_split(text);
