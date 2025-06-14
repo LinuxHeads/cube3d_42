@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:13:02 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 04:00:33 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static bool	is_rgb(char *rgb)
 }
 
 /**
- * @brief assigns a value into a member of the rgb struct based on the value index
+ * @brief assigns a value into a member of the rgb struct 
+ 	based on the value index
  * @param rgb a pointer to the rgb struct
- * @param i which rgb value to assign based on index 0 for red 1 for green and 2 for blue
+ * @param i which rgb value to assign based on index 
+ 	0 for red 1 for green and 2 for blue
  * @param cmp the string containing the rgb value
  * @returns 1 for failure and 0 for success
  */

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:41:25 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:21:24 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 04:01:46 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	check_order(t_game *game, int order)
 	if (order == 1)
 		return ((MASK_TEXTURES & game->map.occurence) == MASK_TEXTURES);
 	if (order == 2)
-		return (((MASK_TEXTURES | MASK_COLORS) & game->map.occurence) == (MASK_TEXTURES | MASK_COLORS));
+		return (((MASK_TEXTURES | MASK_COLORS) & game->map.occurence)
+			== (MASK_TEXTURES | MASK_COLORS));
 	return (0);
 }
 

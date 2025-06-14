@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 05:05:39 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 04:01:02 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	check_walls(t_game *game)
 	map_copy = dup_map(game);
 	if (!map_copy)
 		return (1);
-	// add check walls logic here
 	ft_free_split(map_copy);
 	return (0);
 }
