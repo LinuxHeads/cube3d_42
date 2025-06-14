@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:49:10 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:57:08 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:48:29 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	load_textures(t_game *game)
 	return (1);
 }
 
-
-void	parse_texture(t_game *game, char *line, int i, int type)
+void	parse_texture(t_game *game, char *line, int type)
 {
 	char	**text;
 	char	*path;
