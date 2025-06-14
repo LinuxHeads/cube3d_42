@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 05:05:39 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 10:20:17 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_chars(t_game *game, size_t i, size_t j, bool *player_found)
 	if (ft_strchr(" 01", game->map.content[i][j]))
 	{
 		if (game->map.content[i][j] == ' ')
-			game->map.content[i][j] = '0';
+			game->map.content[i][j] = '1';
 	}
 	else if (ft_strchr("NSEW", game->map.content[i][j]))
 	{
@@ -64,17 +64,6 @@ static int	check_content(t_game *game)
 	return (0);
 }
 
-static int	check_walls(t_game *game)
-{
-	char	**map_copy;
-
-	map_copy = dup_map(game);
-	if (!map_copy)
-		return (1);
-	// add check walls logic here
-	ft_free_split(map_copy);
-	return (0);
-}
 
 int	check_map(t_game *game)
 {

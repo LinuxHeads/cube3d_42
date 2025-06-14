@@ -1,14 +1,11 @@
-NO textures/wood_hor.png
-SO textures/brick.png
-WE textures/wood_ver.png
-EA textures/grass.png
+NO ./textures/wood_hor.png
+SO ./textures/wood_ver.png
+WE ./textures/brick.png
+EA ./textures/grass.png
 F 220,100,0
 C 225,30,0
 
-111111111111
-100001000001
-100000000001
-11N101000011
-100000000001
-100000000001
-111111111111
+11111
+10N01
+10 01
+11111

@@ -12,13 +12,15 @@ SRC_DIR = src
 OBJS_DIR = objs
 
 SRC =  	main.c \
-		exit_handler.c \
+		exit_handler/exit_handler.c \
+		exit_handler/free_map.c \
 		parsing/parse.c \
 		parsing/parse_utils.c \
 		parsing/parse_colors.c \
 		parsing/parse_texture.c \
 		parsing/parse_content.c \
 		parsing/check_map.c \
+		parsing/check_map_walls.c \
 		parsing/validation_utils.c \
 		init/init_game.c \
 		init/init_mlx.c \

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:17:16 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 10:15:31 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@
 # include <errno.h>
 // #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 # include <MLX42/MLX42.h>
-# define FOV (M_PI / 3) // field of view in radians
-# define FPS 60         // frames per second, used for timing the game loop
+// # define FOV (M_PI / 3) // field of view in radians
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 // I use these macros to make sure the order of input is correct
-# define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE \
-			+ 1)) | (1 << (EA + 1)))
-# define MASK_COLORS ((1 << (FlOOR + 1)) | (1 << (CEILING + 1)))
+// hardcoded to meet norm standards
+# define MASK_TEXTURES 30
+# define MASK_COLORS 96
 
 enum				e_texture
 {
@@ -246,7 +245,7 @@ void				ft_exit_handler(t_game *game, char **message, int exit_code,
  * @param type The type of the texture being parsed (e.g., NO, SO, WE, EA).
  * @return void
  */
-void				parse_texture(t_game *game, char *line, int i, int type);
+void				parse_texture(t_game *game, char *line, int type);
 
 /**
  * @brief Sets the occurrence of a specific type in the game structure.
@@ -316,6 +315,11 @@ void				start_game(t_game *game);
  */
 int					get_rgba(int r, int g, int b, int a);
 
+int					get_r(int rgba);
+int					get_g(int rgba);
+int					get_b(int rgba);
+int					get_a(int rgba);
+
 /**
  * @brief handles the keypress events for the game, such as moving the player,
 	rotating the camera, and closing the window.
@@ -327,7 +331,15 @@ void				handle_keypress(mlx_key_data_t keydata, void *param);
 
 t_ray				init_ray(t_player player, int col, int width);
 void				draw_column(int col, t_ray ray, t_game *game);
+
+/**
+ * @brief calculates the expected wall column drawing-end (wall bottom) index.
+ * @param line_height window screen height / distance to the wall
+ * @param height window screen height
+ * @return an integer representing the end index of drawing a wall
+ */
 int					get_draw_end(double line_height, int height);
+
 int					get_draw_start(double line_height, int height);
 int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
@@ -337,6 +349,10 @@ void				move_forward(t_game *game);
 void				move_backward(t_game *game);
 void				move_left(t_game *game);
 void				move_right(t_game *game);
+void				print_game(t_game *game);
+void				mouse_move(double x, double y, void *param);
+void				free_map(t_game *game);
+int					check_walls(t_game *game);
 void	handle_input(t_game *game);
 int	load_textures(t_game *game);
 #endif /* CUBE3D_H */

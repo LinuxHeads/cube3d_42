@@ -6,12 +6,17 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/06 01:42:01 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 04:00:33 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
+/**
+ * @brief checks if a given string is a valid rgb value (0 - 255)
+ * @param rgb a string string which contains the rgb value
+ * @return a boolean value, True if the value is rgb, False if not
+ */
 static bool	is_rgb(char *rgb)
 {
 	if (ft_strlen(rgb) == 0 || ft_strlen(rgb) > 3)
@@ -23,7 +28,16 @@ static bool	is_rgb(char *rgb)
 	return (true);
 }
 
-int	assign_rgb(t_rgb *rgb, int i, char *cmp)
+/**
+ * @brief assigns a value into a member of the rgb struct 
+ 	based on the value index
+ * @param rgb a pointer to the rgb struct
+ * @param i which rgb value to assign based on index 
+ 	0 for red 1 for green and 2 for blue
+ * @param cmp the string containing the rgb value
+ * @returns 1 for failure and 0 for success
+ */
+static int	assign_rgb(t_rgb *rgb, int i, char *cmp)
 {
 	int	value;
 
@@ -76,16 +90,15 @@ void	parse_color(t_game *game, char *line)
 		if (text)
 			ft_free_split(text);
 		ft_exit_handler(game,
-			(char *[]){"Error: Invalid color format on line: ", " file: ",
-			__FILE__, " .", NULL}, 1, NULL);
+			(char *[]){"Error\nInvalid color format on line: ", " file: ",
+			__FILE__, " .\n", NULL}, 1, NULL);
 	}
 	if (parse_rgb(text, &rgb))
 	{
 		if (text)
 			ft_free_split(text);
 		ft_exit_handler(game,
-			(char *[]){"Error: Invalid color format on line: ", " file: ",
-			__FILE__, " .", NULL}, 1, NULL);
+			(char *[]){"Error\nInvalid color format\n.", NULL}, 1, NULL);
 	}
 	if (ft_strncmp(text[0], "F", 1) == 0)
 		game->map.floor_color = rgb;

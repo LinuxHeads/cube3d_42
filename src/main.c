@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:59:21 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 06:27:00 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 03:27:05 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	print_game(t_game *game)
 			printf("%c ", game->map.content[i][j]);
 		printf("\n");
 	}
-	printf("Map Width: %zu\n", game->map.width);
-	printf("Map Height: %zu\n", game->map.height);
+	printf("Map Width: %ld\n", game->map.width);
+	printf("Map Height: %ld\n", game->map.height);
 	printf("Floor Color: R:%d G:%d B:%d\n", game->map.floor_color.r,
 		game->map.floor_color.g, game->map.floor_color.b);
 	printf("Ceiling Color: R:%d G:%d B:%d\n", game->map.ceiling_color.r,
