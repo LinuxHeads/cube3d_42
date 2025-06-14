@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -Iinclude
-NAME = cube3d
+NAME = cub3D
 
 LIBFT_DIR = libft_42
 LDFLAGS = -L$(LIBFT_DIR) -lft
