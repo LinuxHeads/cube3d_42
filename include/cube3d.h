@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 10:15:31 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:48:46 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
-// #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
-# include <MLX42/MLX42.h>
+#include "/home/msalim/MLX42/include/MLX42/MLX42.h"
+/* # include <MLX42/MLX42.h> */
 // # define FOV (M_PI / 3) // field of view in radians
 # define STEP 0.01
 # define MOVE_SPEED 0.05
@@ -245,6 +245,7 @@ void				ft_exit_handler(t_game *game, char **message, int exit_code,
  * @param type The type of the texture being parsed (e.g., NO, SO, WE, EA).
  * @return void
  */
+
 void				parse_texture(t_game *game, char *line, int type);
 
 /**
@@ -353,4 +354,6 @@ void				print_game(t_game *game);
 void				mouse_move(double x, double y, void *param);
 void				free_map(t_game *game);
 int					check_walls(t_game *game);
+void	handle_input(t_game *game);
+int	load_textures(t_game *game);
 #endif /* CUBE3D_H */
