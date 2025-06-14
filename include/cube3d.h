@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 13:48:46 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/14 14:01:29 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define CUBE3D_H
 # define _USE_MATH_DEFINES
 # include "../libft_42/include/libft.h"
+# include "/home/msalim/MLX42/include/MLX42/MLX42.h"
+# include <errno.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <errno.h>
-#include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 /* # include <MLX42/MLX42.h> */
 // # define FOV (M_PI / 3) // field of view in radians
 # define STEP 0.01
@@ -172,7 +172,7 @@ int					line_type(char *line);
 /**
 
 
- * @brief Parses a line from the input file and updates the game map accordingly.
+* @brief Parses a line from the input file and updates the game map accordingly.
  * @param game Pointer to the game structure.
  * @param line The line to be parsed.
  * @return void
@@ -195,6 +195,7 @@ char				*combine_line(char **line);
 /**
  * @brief Parses a line of text to extract RGB color values.
  * @param text A pointer to a string containing the RGB values.
+
 * @param rgb A pointer to a t_rgb struct where the parsed RGB values are stored.
  * @return An integer indicating the success of the parsing:
  *     0 - parsing failed,\n
@@ -204,8 +205,9 @@ int					parse_rgb(char **text, t_rgb *rgb);
 
 /**
 
- * @brief extract rgb color values from a line and store them in the game struct.
-	expected format is "F r,g,b" or "C r,g,b".
+
+* @brief extract rgb color values from a line and store them in the game struct.
+expected format is "F r,g,b" or "C r,g,b".
  * @param game Pointer to the game structure.
  * @param line The line to be parsed,
 	which should contain the color information.
@@ -354,6 +356,6 @@ void				print_game(t_game *game);
 void				mouse_move(double x, double y, void *param);
 void				free_map(t_game *game);
 int					check_walls(t_game *game);
-void	handle_input(t_game *game);
-int	load_textures(t_game *game);
+void				handle_input(t_game *game);
+int					load_textures(t_game *game);
 #endif /* CUBE3D_H */

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:23:59 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:13:20 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:05:59 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,16 @@ void	trace_ray(t_ray *ray, t_map *map)
 		{
 			ray->side_dist.x += ray->delta.x;
 			ray->map.x += ray->step.x;
-			ray->side = 0; // Hit X side
+			ray->side = 0;
 		}
 		else
 		{
 			ray->side_dist.y += ray->delta.y;
 			ray->map.y += ray->step.y;
-			ray->side = 1; // Hit Y side
+			ray->side = 1;
 		}
 		if (map->content[(int)ray->map.y][(int)ray->map.x] == '1')
 			ray->hit = 1;
-	}
-}
-
-/*
- *
- * msalim: code below is just for testing compilation , it drawed colors
- * abdsalah: shove it up
- *
- * */
-int	choose_wall_color(t_ray ray)
-{
-	if (ray.side == 0)
-	{
-		if (ray.dir.x > 0)
-			return (get_rgba(255, 0, 0, 255)); // East wall - Red
-		else
-			return (get_rgba(0, 255, 0, 255)); // West wall - Green
-	}
-	else
-	{
-		if (ray.dir.y > 0)
-			return (get_rgba(0, 0, 255, 255)); // South wall - Blue
-		else
-			return (get_rgba(255, 255, 0, 255)); // North wall - Yellow
 	}
 }
 
@@ -69,14 +45,13 @@ void	render_scene(t_game *game)
 	col = 0;
 	while (col < game->width)
 	{
-		ray = init_ray(game->player, col, game->width); // Setup the ray
-		trace_ray(&ray, &game->map);                   
-		draw_column(col, ray, game);                    // Draw vertical slice
+		ray = init_ray(game->player, col, game->width);
+		trace_ray(&ray, &game->map);
+		draw_column(col, ray, game);
 		col++;
 	}
 }
 
-// Main loop function - combines input and rendering
 void	render_frame(void *param)
 {
 	t_game	*game;

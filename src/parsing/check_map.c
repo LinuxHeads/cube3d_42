@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 10:20:17 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:58:39 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static int	check_content(t_game *game)
 		game->player.pos.y);
 	return (0);
 }
-
 
 int	check_map(t_game *game)
 {
