@@ -87,6 +87,6 @@ void	draw_column(int col, t_ray ray, t_game *game)
 	if (!texture)
 		return ;
 	draw_ceiling(game, col, draw_start);
-	draw_wall(game, (int []){col, draw_end}, texture, ray);
+	draw_wall(game, (int[]){col, draw_end}, texture, ray);
 	draw_floor(game, col, draw_end);
 }

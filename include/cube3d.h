@@ -353,4 +353,6 @@ void				print_game(t_game *game);
 void				mouse_move(double x, double y, void *param);
 void				free_map(t_game *game);
 int					check_walls(t_game *game);
+void	handle_input(t_game *game);
+int	load_textures(t_game *game);
 #endif /* CUBE3D_H */
