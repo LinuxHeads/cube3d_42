@@ -18,6 +18,7 @@ static void	init_map(t_game *game)
 	ft_bzero(&game->player, sizeof(t_player));
 	game->width = 1280; // Default width
 	game->height = 720; // Default height
+	game->fd = -1;
 }
 
 static void	check_args(int ac, char **av)
@@ -31,7 +32,7 @@ static void	check_args(int ac, char **av)
 	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4) != 0)
 	{
 		ft_exit_handler(NULL,
-			(char *[]){"Error\nInvalid file extension. Expected .cub", NULL}, 1,
+			(char *[]){"Error\nInvalid file extension. Expected .cub\n", NULL}, 1,
 			NULL);
 	}
 }
@@ -40,5 +41,4 @@ void	init_game(t_game *game, int ac, char **av)
 {
 	check_args(ac, av);
 	init_map(game);
-	game->fd = -1;
 }
