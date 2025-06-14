@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:45:23 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 10:10:46 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ void	parse(t_game *game, char *file)
 	}
 	if (check_map(game))
 	{
-		printf("Error\nInvalid map format\n");
-		ft_exit_handler(game, (char *[]){"Error\nInvalid map format", NULL}, 1,
-			NULL);
+		ft_exit_handler(game, (char *[]){"Error\nInvalid map format.\n",
+			NULL}, 1, NULL);
 	}
 }

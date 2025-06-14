@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:24:53 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 10:15:31 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@
 # include <errno.h>
 // #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 # include <MLX42/MLX42.h>
-# define FOV (M_PI / 3) // field of view in radians
-# define FPS 60         // frames per second, used for timing the game loop
+// # define FOV (M_PI / 3) // field of view in radians
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 // I use these macros to make sure the order of input is correct
-# define MASK_TEXTURES ((1 << (NO + 1)) | (1 << (SO + 1)) | (1 << (WE \
-			+ 1)) | (1 << (EA + 1)))
-# define MASK_COLORS ((1 << (FlOOR + 1)) | (1 << (CEILING + 1)))
+// hardcoded to meet norm standards
+# define MASK_TEXTURES 30
+# define MASK_COLORS 96
 
 enum				e_texture
 {
@@ -341,7 +340,6 @@ void				draw_column(int col, t_ray ray, t_game *game);
  */
 int					get_draw_end(double line_height, int height);
 
-
 int					get_draw_start(double line_height, int height);
 int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
@@ -353,5 +351,6 @@ void				move_left(t_game *game);
 void				move_right(t_game *game);
 void				print_game(t_game *game);
 void				mouse_move(double x, double y, void *param);
-void	free_map(t_game *game);
+void				free_map(t_game *game);
+int					check_walls(t_game *game);
 #endif /* CUBE3D_H */
