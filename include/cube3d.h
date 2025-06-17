@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 14:01:29 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/17 17:04:22 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-// #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
-# include <MLX42/MLX42.h>
+ #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
+/* # include <MLX42/MLX42.h> */
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
