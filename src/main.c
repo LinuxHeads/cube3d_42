@@ -6,13 +6,12 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:59:21 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:27:05 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:07:11 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-// prints the games map, textures, and colors
 void	print_game(t_game *game)
 {
 	size_t	i;

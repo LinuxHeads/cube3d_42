@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 08:14:39 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:18:50 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:04:02 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void	draw_column(int col, t_ray ray, t_game *game)
 	if (!texture)
 		return ;
 	draw_ceiling(game, col, draw_start);
-	draw_wall(game, (int[]){col, draw_end}, texture, ray);
+	draw_wall(game, (int []){col, draw_end}, texture, ray);
 	draw_floor(game, col, draw_end);
 }

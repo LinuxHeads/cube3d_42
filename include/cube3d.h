@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 14:05:16 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 14:01:29 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -433,7 +433,6 @@ void				free_map(t_game *game);
  *   0 - walls are invalid.
  */
 int					check_walls(t_game *game);
-
 /**
  * @brief Handles the input events for the game,
 	such as key presses and mouse movements.
@@ -453,4 +452,6 @@ void				handle_input(t_game *game);
  */
 int					load_textures(t_game *game);
 
+void				handle_input(t_game *game);
+int					load_textures(t_game *game);
 #endif /* CUBE3D_H */

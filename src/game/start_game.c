@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 23:45:46 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/14 13:59:03 by msalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ void	start_game(t_game *game)
 	mlx_delete_image(game->mlx, game->img);
 	mlx_terminate(game->mlx);
 }
-
