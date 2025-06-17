@@ -14,7 +14,6 @@
 # define CUBE3D_H
 # define _USE_MATH_DEFINES
 # include "../libft_42/include/libft.h"
-# include "/home/msalim/MLX42/include/MLX42/MLX42.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -22,15 +21,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-/* # include <MLX42/MLX42.h> */
-// # define FOV (M_PI / 3) // field of view in radians
+// #include "/home/msalim/MLX42/include/MLX42/MLX42.h"
+# include <MLX42/MLX42.h>
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 // I use these macros to make sure the order of input is correct
 // hardcoded to meet norm standards
-# define MASK_TEXTURES 30
-# define MASK_COLORS 96
+# define MASK_TEXTURES 30 // 0b00011110
+# define MASK_COLORS 96 // 0b01100000
 
 enum				e_texture
 {
@@ -170,9 +169,8 @@ void				setup_input_file(t_game *game, char *file);
 int					line_type(char *line);
 
 /**
-
-
-* @brief Parses a line from the input file and updates the game map accordingly.
+ * @brief Parses a line from the input file and
+ 	 updates the game map accordingly.
  * @param game Pointer to the game structure.
  * @param line The line to be parsed.
  * @return void
@@ -195,8 +193,8 @@ char				*combine_line(char **line);
 /**
  * @brief Parses a line of text to extract RGB color values.
  * @param text A pointer to a string containing the RGB values.
-
-* @param rgb A pointer to a t_rgb struct where the parsed RGB values are stored.
+ * @param rgb A pointer to a t_rgb struct 
+ 	where the parsed RGB values are stored.
  * @return An integer indicating the success of the parsing:
  *     0 - parsing failed,\n
  *     1 - parsing succeeded.
@@ -206,8 +204,8 @@ int					parse_rgb(char **text, t_rgb *rgb);
 /**
 
 
-* @brief extract rgb color values from a line and store them in the game struct.
-expected format is "F r,g,b" or "C r,g,b".
+ * @brief extract rgb color values from a line and store them in the game struct.
+	expected format is "F r,g,b" or "C r,g,b".
  * @param game Pointer to the game structure.
  * @param line The line to be parsed,
 	which should contain the color information.
@@ -343,19 +341,117 @@ void				draw_column(int col, t_ray ray, t_game *game);
  */
 int					get_draw_end(double line_height, int height);
 
+/**
+ * @brief calculates the expected wall column drawing-start (wall top) index.
+ * @param line_height window screen height / distance to the wall
+ * @param height window screen height
+ * @return an integer representing the start index of drawing a wall
+ */
 int					get_draw_start(double line_height, int height);
+
+/**
+ * @brief calculates the texture y coordinate based on the ray's side and
+ * the distance to the wall.
+ * @param ray The ray structure containing the ray's properties.
+ * @param line_height The height of the wall column in pixels.
+ * @param height The height of the window screen.
+ * @return An integer representing the y coordinate in the texture.
+ */
 int					get_tex_x(t_game *game, t_ray ray, mlx_texture_t *texture);
+
+/**
+
+ * @brief returns the wall texture based on the ray's
+ 	side and the player's direction.
+ * @param game Pointer to the game structure.
+ * @param ray The ray structure containing the ray's properties.
+ * @return A pointer to the wall texture to be used for rendering.
+ */
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray ray);
+
+/**
+ * @brief rotates the player's direction to the right.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				rotate_right(t_game *game);
+
+/**
+ * @brief rotates the player's direction to the left.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				rotate_left(t_game *game);
+
+/**
+ * @brief moves the player forward in the direction they are facing.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				move_forward(t_game *game);
+
+/**
+ * @brief moves the player backward in the direction they are facing.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				move_backward(t_game *game);
+
+/**
+ * @brief moves the player to the left (strafe left).
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				move_left(t_game *game);
+
+/**
+ * @brief moves the player to the right (strafe right).
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				move_right(t_game *game);
+
+/**
+ * @brief prints the game map and its properties to the console.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				print_game(t_game *game);
-void				mouse_move(double x, double y, void *param);
+
+/**
+ * @brief Frees the memory allocated for the game map and its content.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
 void				free_map(t_game *game);
+
+/**
+ * @brief Checks if the map is surrounded by walls and has no gaps.
+ * @param game Pointer to the game structure.
+ * @return An integer indicating the validity of the walls:
+ *    1 - walls are valid,\n
+ *   0 - walls are invalid.
+ */
 int					check_walls(t_game *game);
+/**
+ * @brief Handles the input events for the game,
+	such as key presses and mouse movements.
+ * @param game Pointer to the game structure.
+ * @return void
+ */
+void				handle_input(t_game *game);
+
+/**
+
+ * @brief Loads the textures for the game from the specified paths
+ 	 in the map structure.
+ * @param game Pointer to the game structure.
+ * @return An integer indicating the success of the texture loading:
+ *   0 - textures loaded successfully,\n
+ *   1 - error loading textures.
+ */
+int					load_textures(t_game *game);
+
 void				handle_input(t_game *game);
 int					load_textures(t_game *game);
 #endif /* CUBE3D_H */
