@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 13:59:03 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/22 17:41:17 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,10 @@ void	init_direction_ew(t_game *game)
 void	check_game_and_textures(t_game *game)
 {
 	char	*msg1;
-	char	*msg2;
 
 	msg1 = "Error\nGame not initialized properly.\n";
-	msg2 = "Error\nFailed to load textures.\n";
 	if (!game || !game->mlx || !game->img)
 		ft_exit_handler(game, (char *[]){msg1, NULL}, 1, NULL);
-	if (!load_textures(game))
-		ft_exit_handler(game, (char *[]){msg2, NULL}, 1, NULL);
 }
 
 void	start_game(t_game *game)
