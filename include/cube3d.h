@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/22 17:49:01 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/22 18:03:31 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 # define CUBE3D_H
 # define _XOPEN_SOURCE
 # include "../libft_42/include/libft.h"
-# include <errno.h>
 # include <fcntl.h>
 # include <math.h>
-# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "../MLX42.h"
 // # include <MLX42/MLX42.h>
-# define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 # define W_WIDTH 1280
