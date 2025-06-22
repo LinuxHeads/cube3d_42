@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/21 17:50:58 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/22 17:49:01 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define STEP 0.01
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
+# define W_WIDTH 1280
+# define W_HEIGHT 720
 // I use these macros to make sure the order of input is correct
 // hardcoded to meet norm standards
 # define MASK_TEXTURES 30 // 0b00011110
