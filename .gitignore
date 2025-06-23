@@ -1,7 +1,8 @@
 *.o
-cube3d
-libft.a
+cub3D
+*.a
 objs
 *.cub
 *.json
 *.swp
+MLX42.h

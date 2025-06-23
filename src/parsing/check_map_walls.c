@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 04:07:51 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 10:20:27 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/23 10:28:28 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static int	flood_fill(char **map, int row, int col, t_game *game)
 	int		leak;
 
 	if (row < 0 || row >= (int)game->map.height)
+		return (1);
+	if (!map || !*map)
+		return (1);
+	if (!map[row])
 		return (1);
 	max_cols = ft_strlen(map[row]);
 	if (col < 0 || col >= (int)max_cols)

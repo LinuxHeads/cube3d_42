@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 13:58:39 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/23 10:19:35 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_chars(t_game *game, size_t i, size_t j, bool *player_found)
 	if (ft_strchr(" 01", game->map.content[i][j]))
 	{
 		if (game->map.content[i][j] == ' ')
-			game->map.content[i][j] = '1';
+			game->map.content[i][j] = ' ';
 	}
 	else if (ft_strchr("NSEW", game->map.content[i][j]))
 	{
