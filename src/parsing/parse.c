@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 12:31:22 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:04:27 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	evaluate_line(t_game *game, int type, char *line)
 {
 	if (type == 0)
-		ft_exit_handler(game, (char *[]){"Error\ninvalid line format at line",
-			NULL}, 1, line);
+		ft_exit_handler(game, (char *[]){"Error\ninvalid line format.\n",
+			NULL}, 1, NULL);
 	if (type != 7 && occurence_check(game, type))
 		ft_exit_handler(game, (char *[]){"Error\nDuplicated input detected.\n",
-			NULL}, 1, line);
+			NULL}, 1, NULL);
 	else if (type <= 6)
 	{
 		set_occurrence(game, type);
@@ -31,14 +31,14 @@ void	evaluate_line(t_game *game, int type, char *line)
 	else if (type == 7)
 	{
 		if (!check_order(game, 2))
-			ft_exit_handler(game, (char *[]){"Error\nInvalid line format",
-				NULL}, 1, line);
+			ft_exit_handler(game, (char *[]){"Error\nWrong input order.\n",
+				NULL}, 1, NULL);
 		set_occurrence(game, type);
 		parse_map_line(game, line);
 	}
 	else
-		ft_exit_handler(game, (char *[]){"Error\nInvalid line format", NULL}, 1,
-			NULL);
+		ft_exit_handler(game, (char *[]){"Error\nInvalid line format.\n", NULL}, 1,
+		NULL);
 }
 
 void	read_and_store_line(t_game *game)
@@ -57,7 +57,7 @@ void	read_and_store_line(t_game *game)
 			if (last_type == 7)
 				ft_exit_handler(game,
 					(char *[]){"Error\nCan't have empty lines in map content\n",
-					NULL}, 1, game->line);
+					NULL}, 1, NULL);
 			free(game->line);
 			continue ;
 		}
@@ -82,7 +82,7 @@ void	parse(t_game *game, char *file)
 	if (game->map.occurence != (MASK_TEXTURES | MASK_COLORS | (1 << 7)))
 	{
 		ft_exit_handler(game, (char *[]){"Error\nInvalid map format", NULL}, 1,
-			NULL);
+		NULL);
 	}
 	if (check_map(game))
 	{

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 13:02:51 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:14:56 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,23 @@ int	parse_rgb(char **text, t_rgb *rgb)
 	}
 	return (0);
 }
+static int count_occurence(char *s, char c)
+{
+	int count;
+	
+	if (!s)
+	{
+		return -1;
+	}
+	count = 0;
+	while (*s)
+	{
+		if (*s == c)
+			count++;
+		s++;
+	}
+	return (count);
+}
 
 void	parse_color(t_game *game, char *line)
 {
@@ -84,13 +101,12 @@ void	parse_color(t_game *game, char *line)
 	t_rgb	rgb;
 
 	text = ft_split(line, ',');
-	if (!text || !text[0] || !text[1])
+	if (ft_split_len(text) != 3 || count_occurence(line, ',') != 2)
 	{
 		if (text)
 			ft_free_split(text);
 		ft_exit_handler(game,
-			(char *[]){"Error\nInvalid color format on line: ", " file: ",
-			__FILE__, " .\n", NULL}, 1, NULL);
+			(char *[]){"Error\nInvalid color format.\n", NULL}, 1, NULL);
 	}
 	if (parse_rgb(text, &rgb))
 	{

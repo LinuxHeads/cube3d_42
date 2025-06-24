@@ -44,6 +44,7 @@ SRC =  	int_ops/ft_atoi.c \
 		string/ft_strcmp.c \
 		string/ft_strncpy.c \
 		string/ft_strcpy.c \
+		string/ft_split_len.c \
 		string/ft_str_replace.c \
 		string/ft_free_split.c \
 		print/ft_putchar_fd.c \

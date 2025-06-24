@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 10:42:42 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/12 07:04:59 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:09:42 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char				*ft_itoa(int n);
 double				ft_atod(const char *s);
 void				ft_putnbr_fd(int n, int fd);
 char				**ft_split(char const *s, char c);
+int					ft_split_len(char **s);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 int					ft_atoi(const char *nptr);
 void				ft_bzero(void *s, size_t n);
