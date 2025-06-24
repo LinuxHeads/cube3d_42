@@ -6,13 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 08:14:39 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 14:04:02 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:53:52 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	draw_ceiling(t_game *game, int col, int draw_start)
+static void	draw_ceiling(t_game *game, int col, int draw_start)
 {
 	int	y;
 
@@ -25,7 +25,7 @@ void	draw_ceiling(t_game *game, int col, int draw_start)
 	}
 }
 
-void	draw_floor(t_game *game, int col, int draw_end)
+static void	draw_floor(t_game *game, int col, int draw_end)
 {
 	int	y;
 

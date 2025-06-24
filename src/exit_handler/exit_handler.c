@@ -6,13 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:50:13 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:25:14 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:54:54 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	print_error_message(char **message)
+static void	print_error_message(char **message)
 {
 	int	i;
 

@@ -6,13 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:23:59 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 14:05:59 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:54:40 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	trace_ray(t_ray *ray, t_map *map)
+static void	trace_ray(t_ray *ray, t_map *map)
 {
 	int	hit;
 
@@ -37,7 +37,7 @@ void	trace_ray(t_ray *ray, t_map *map)
 	}
 }
 
-void	render_scene(t_game *game)
+static void	render_scene(t_game *game)
 {
 	int		col;
 	t_ray	ray;

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:49:10 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 10:17:35 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:56:09 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,25 @@ int	load_textures(t_game *game)
 		return (0);
 	game->map.south_texture = mlx_load_png(game->map.texture[SO]);
 	if (!game->map.south_texture)
+	{
+		mlx_delete_texture(game->map.north_texture);
 		return (0);
+	}
 	game->map.west_texture = mlx_load_png(game->map.texture[WE]);
 	if (!game->map.west_texture)
+	{
+		mlx_delete_texture(game->map.north_texture);
+		mlx_delete_texture(game->map.south_texture);
 		return (0);
+	}
 	game->map.east_texture = mlx_load_png(game->map.texture[EA]);
 	if (!game->map.east_texture)
+	{
+		mlx_delete_texture(game->map.north_texture);
+		mlx_delete_texture(game->map.south_texture);
+		mlx_delete_texture(game->map.west_texture);
 		return (0);
+	}
 	return (1);
 }
 

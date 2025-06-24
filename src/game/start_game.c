@@ -6,13 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 10:15:16 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:56:58 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	resizer(int32_t width, int32_t height, void *param)
+static void	resizer(int32_t width, int32_t height, void *param)
 {
 	t_game	*game;
 
@@ -30,7 +30,7 @@ void	resizer(int32_t width, int32_t height, void *param)
 	render_frame(param);
 }
 
-void	init_direction_ns(t_game *game)
+static void	init_direction_ns(t_game *game)
 {
 	if (game->player.dir == 'N')
 	{
@@ -50,7 +50,7 @@ void	init_direction_ns(t_game *game)
 	}
 }
 
-void	init_direction_ew(t_game *game)
+static void	init_direction_ew(t_game *game)
 {
 	if (game->player.dir == 'E')
 	{
@@ -70,7 +70,7 @@ void	init_direction_ew(t_game *game)
 	}
 }
 
-void	check_game_and_textures(t_game *game)
+static void	check_game_and_textures(t_game *game)
 {
 	char	*msg1;
 
