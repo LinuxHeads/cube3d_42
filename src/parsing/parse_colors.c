@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 12:01:39 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:02:51 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	parse_color(t_game *game, char *line)
 		if (text)
 			ft_free_split(text);
 		ft_exit_handler(game,
-			(char *[]){"Error\nInvalid color format\n.", NULL}, 1, NULL);
+			(char *[]){"Error\nInvalid color format.\n", NULL}, 1, NULL);
 	}
 	if (ft_strncmp(text[0], "F", 1) == 0)
 		game->map.floor_color = rgb;

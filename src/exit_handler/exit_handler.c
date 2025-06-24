@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:50:13 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/24 10:54:54 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:29:50 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ static void	print_error_message(char **message)
 
 void	ft_exit_handler(t_game *game, char *message[], int exit_code, void *ptr)
 {
+	char *l;
+	
+	while (1)
+	{
+		l = get_next_line(game->fd);
+		if (l)
+			free(l);
+		else
+			break ;
+	}
+	if (game->line)
+		free(game->line);
 	if (game)
 		free_map(game);
 	if (ptr)

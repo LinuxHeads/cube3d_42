@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 04:18:56 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/22 18:03:31 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:29:20 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_game
 	int				fd;
 	int				width;
 	int				height;
+	char*			line;
 }					t_game;
 
 /**

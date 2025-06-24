@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 00:13:34 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 10:10:46 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:31:22 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,29 @@ void	evaluate_line(t_game *game, int type, char *line)
 
 void	read_and_store_line(t_game *game)
 {
-	char	*line;
 	int		type;
 	int		last_type;
 
 	last_type = -1;
 	while (1)
 	{
-		line = get_next_line(game->fd);
-		if (!line)
+		game->line = get_next_line(game->fd);
+		if (!game->line)
 			break ;
-		if (line[0] == '\n' || line[0] == '\0')
+		if (game->line[0] == '\n' || game->line[0] == '\0')
 		{
 			if (last_type == 7)
 				ft_exit_handler(game,
 					(char *[]){"Error\nCan't have empty lines in map content\n",
-					NULL}, 1, line);
-			free(line);
+					NULL}, 1, game->line);
+			free(game->line);
 			continue ;
 		}
-		type = line_type(line);
-		evaluate_line(game, type, line);
-		free(line);
+		type = line_type(game->line);
+		evaluate_line(game, type, game->line);
+		free(game->line);
 		last_type = type;
+		game->line = NULL;
 	}
 }
 
