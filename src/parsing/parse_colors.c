@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:47:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 04:00:33 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:01:39 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	parse_rgb(char **text, t_rgb *rgb)
 		if (assign_rgb(rgb, i, cmp))
 		{
 			free(cmp);
-			ft_putendl_fd("Error: Invalid RGB value.", 2);
 			return (1);
 		}
 		free(cmp);

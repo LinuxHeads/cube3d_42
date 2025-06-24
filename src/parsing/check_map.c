@@ -6,14 +6,13 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 00:19:49 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/23 10:19:35 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:09:13 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
 static int	check_chars(t_game *game, size_t i, size_t j, bool *player_found)
-// needs testing
 {
 	if (ft_strchr(" 01", game->map.content[i][j]))
 	{
