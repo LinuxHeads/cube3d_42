@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 23:55:29 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 03:55:49 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:10:31 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	init_map(t_game *game)
 {
 	ft_bzero(&game->map, sizeof(t_map));
 	ft_bzero(&game->player, sizeof(t_player));
-	game->width = 1280;
-	game->height = 720;
+	game->width = W_WIDTH;
+	game->height = W_HEIGHT;
 	game->fd = -1;
 }
 

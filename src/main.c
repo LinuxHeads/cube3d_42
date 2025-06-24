@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:59:21 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/22 17:37:54 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:17:22 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ int	main(int argc, char **argv)
 
 	init_game(&game, argc, argv);
 	parse(&game, argv[1]);
-	char *msg2 = "Error\nFailed to load textures.\n";
 	if (!load_textures(&game))
-		ft_exit_handler(&game, (char *[]){msg2, NULL}, 1, NULL);
+		ft_exit_handler(&game, (char *[]){"Error\nFailed to load textures.\n", NULL}, 1, NULL);
 	init_mlx(&game);
 	print_game(&game);
 	start_game(&game);

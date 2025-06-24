@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:14:28 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/22 17:49:20 by abdsalah         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:15:16 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@ void	resizer(int32_t width, int32_t height, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	game->height = W_HEIGHT;
-	game->width = W_WIDTH;
+	game->height = height;
+	game->width = width;
 	mlx_delete_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, width, height);
+	if (!game->img)
+	{
+		mlx_terminate(game->mlx);
+		ft_exit_handler(game, (char *[]){"Error\nfailed to create a new image\n", NULL}, 1, NULL);
+	}
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	render_frame(param);
 }

@@ -6,7 +6,7 @@
 /*   By: abdsalah <abdsalah@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:49:10 by abdsalah          #+#    #+#             */
-/*   Updated: 2025/06/14 13:48:29 by msalim           ###   ########.fr       */
+/*   Updated: 2025/06/24 10:17:35 by abdsalah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	load_textures(t_game *game)
 {
-	if (!game || !game->mlx)
-		return (0);
 	game->map.north_texture = mlx_load_png(game->map.texture[NO]);
 	if (!game->map.north_texture)
 		return (0);
